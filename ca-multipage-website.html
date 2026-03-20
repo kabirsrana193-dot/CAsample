@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Firm Name Here — Chartered Accountants</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2A5C45;
+  --green2:#3A7A5C;
+  --green-light:#EBF2EE;
+  --green-pale:#F4F9F6;
+  --green-border:rgba(42,92,69,0.15);
+  --black:#111110;
+  --gray1:#3A3A38;
+  --gray2:#6B6B69;
+  --gray3:#A8A8A6;
+  --gray4:#E4E4E1;
+  --bg:#FAFAF8;
+  --white:#FFFFFF;
+  --serif:'Lora',Georgia,serif;
+  --sans:'Outfit',sans-serif;
+}
+html,body{height:100%;font-family:var(--sans);background:var(--bg);color:var(--black);overflow-x:hidden;font-weight:300}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--green-border)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 4rem;
+  background:rgba(250,250,248,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--gray4);
+}
+.logo{
+  display:flex;align-items:center;gap:0.55rem;
+  font-family:var(--serif);font-size:1.05rem;font-weight:500;
+  color:var(--black);cursor:pointer;text-decoration:none;
+}
+.logo-mark{
+  width:26px;height:26px;border:1px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.58rem;font-weight:500;color:var(--green);letter-spacing:0.05em;
+}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links li a{
+  display:block;padding:0.5rem 1.1rem;
+  font-size:0.8rem;color:var(--gray2);text-decoration:none;
+  font-weight:400;transition:color 0.2s;letter-spacing:0.01em;
+  position:relative;
+}
+.nav-links li a:hover{color:var(--black)}
+.nav-links li a.active{color:var(--green);font-weight:500}
+.nav-links li a.active::after{
+  content:'';position:absolute;bottom:-1.1rem;left:1.1rem;right:1.1rem;
+  height:2px;background:var(--green);
+}
+.nav-cta{
+  font-size:0.75rem;font-weight:500;letter-spacing:0.04em;
+  padding:0.55rem 1.4rem;
+  background:var(--green);color:var(--white);
+  text-decoration:none;transition:opacity 0.2s;border:none;cursor:pointer;
+  font-family:var(--sans);
+}
+.nav-cta:hover{opacity:0.85}
+
+/* PAGE SYSTEM */
+.page{display:none;min-height:100vh;padding-top:58px;animation:fadeIn 0.35s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ───── PAGE 1: HOME ───── */
+.home-hero{
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+  min-height:calc(100vh - 58px);
+}
+.home-left{
+  padding:5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--gray4);
+  position:relative;overflow:hidden;
+}
+.home-left::after{
+  content:'';position:absolute;bottom:-100px;right:-100px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(42,92,69,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.eyebrow{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--green);font-weight:500;margin-bottom:1.75rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--green);display:inline-block}
+h1.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(2.8rem,4.5vw,4.8rem);
+  font-weight:400;line-height:1.1;
+  color:var(--black);margin-bottom:1.5rem;
+}
+h1.hero-title em{font-style:italic;color:var(--green)}
+.hero-sub{
+  font-size:0.93rem;line-height:1.85;color:var(--gray2);
+  max-width:400px;margin-bottom:2.5rem;
+}
+.btn-row{display:flex;gap:0.85rem;flex-wrap:wrap}
+.btn-green{
+  padding:0.8rem 1.8rem;background:var(--green);color:var(--white);
+  font-size:0.78rem;font-weight:500;font-family:var(--sans);
+  border:none;cursor:pointer;transition:opacity 0.2s;
+}
+.btn-green:hover{opacity:0.85}
+.btn-ghost{
+  padding:0.8rem 1.8rem;background:transparent;color:var(--black);
+  font-size:0.78rem;font-weight:400;font-family:var(--sans);
+  border:1px solid var(--gray4);cursor:pointer;transition:border-color 0.2s;
+}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.home-right{display:grid;grid-template-rows:1fr 1fr 1fr}
+.home-stat{
+  padding:2.5rem 3rem;
+  border-bottom:1px solid var(--gray4);
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.home-stat:last-child{border-bottom:none}
+.stat-n{
+  font-family:var(--serif);font-size:3rem;font-weight:400;
+  color:var(--black);line-height:1;margin-bottom:0.35rem;
+}
+.stat-n em{font-style:italic;color:var(--green)}
+.stat-l{font-size:0.78rem;color:var(--gray2)}
+
+/* MINI SERVICES STRIP */
+.home-strip{
+  background:var(--green);display:flex;
+  justify-content:space-around;align-items:center;
+  padding:1.5rem 4rem;flex-wrap:wrap;gap:1rem;
+}
+.strip-item{
+  font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.75);font-weight:400;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.strip-dot{width:4px;height:4px;background:rgba(255,255,255,0.4);border-radius:50%}
+
+/* ───── PAGE 2: SERVICES ───── */
+.page-hero{
+  background:var(--green-pale);padding:4rem 4rem 3rem;
+  border-bottom:1px solid var(--gray4);
+}
+.page-hero .eyebrow{margin-bottom:0.75rem}
+.page-hero h2{
+  font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);
+  font-weight:400;color:var(--black);line-height:1.2;
+}
+.page-hero h2 em{font-style:italic;color:var(--green)}
+.page-hero p{font-size:0.88rem;line-height:1.8;color:var(--gray2);max-width:520px;margin-top:0.75rem}
+
+.svc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--gray4);
+  margin:0;
+}
+.svc-card{
+  background:var(--white);padding:2.5rem 2rem;
+  transition:background 0.25s;cursor:default;position:relative;
+}
+.svc-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:var(--green);
+  transform:scaleX(0);transform-origin:left;transition:transform 0.35s;
+}
+.svc-card:hover{background:var(--green-pale)}
+.svc-card:hover::after{transform:scaleX(1)}
+.svc-num{font-size:0.65rem;letter-spacing:0.15em;color:var(--gray3);margin-bottom:1.25rem;font-weight:500}
+.svc-icon{
+  width:38px;height:38px;border:1px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1rem;
+}
+.svc-icon svg{width:18px;height:18px;stroke:var(--green);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.svc-name{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--black);margin-bottom:0.5rem}
+.svc-desc{font-size:0.8rem;line-height:1.75;color:var(--gray2)}
+
+/* PROCESS STRIP */
+.process-wrap{padding:4rem;background:var(--bg)}
+.process-title{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--black);margin-bottom:2.5rem}
+.process-title em{font-style:italic;color:var(--green)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+.steps::before{
+  content:'';position:absolute;top:1.3rem;
+  left:calc(12.5% + 1.3rem);right:calc(12.5% + 1.3rem);
+  height:1px;background:var(--gray4);
+}
+.step-item{text-align:center}
+.step-dot{
+  width:2.6rem;height:2.6rem;border-radius:50%;
+  background:var(--white);border:1px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;font-size:0.78rem;font-weight:500;color:var(--green);
+  position:relative;z-index:1;font-family:var(--serif);
+}
+.step-name{font-size:0.85rem;font-weight:500;color:var(--black);margin-bottom:0.4rem}
+.step-desc{font-size:0.75rem;line-height:1.65;color:var(--gray2)}
+
+/* ───── PAGE 3: ABOUT ───── */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 58px)}
+.about-left{
+  background:var(--green);padding:5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-left .eyebrow{color:rgba(255,255,255,0.55)}
+.about-left .eyebrow::before{background:rgba(255,255,255,0.4)}
+.about-left h2{
+  font-family:var(--serif);font-size:clamp(2rem,3vw,3rem);
+  font-weight:400;color:var(--white);line-height:1.2;margin-bottom:1.25rem;
+}
+.about-left h2 em{font-style:italic;opacity:0.7}
+.about-left p{font-size:0.88rem;line-height:1.85;color:rgba(255,255,255,0.65);margin-bottom:2rem}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.12);margin-top:auto}
+.ab-stat{background:rgba(255,255,255,0.05);padding:1.5rem}
+.ab-stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:400;color:var(--white);line-height:1;margin-bottom:0.3rem}
+.ab-stat-l{font-size:0.72rem;color:rgba(255,255,255,0.45);letter-spacing:0.04em}
+.about-right{
+  background:var(--white);padding:5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-list{display:flex;flex-direction:column;margin-top:1.5rem}
+.ab-item{
+  display:flex;gap:1.25rem;align-items:flex-start;
+  padding:1rem 0;border-bottom:1px solid var(--gray4);
+  font-size:0.83rem;line-height:1.75;color:var(--gray2);
+}
+.ab-item:last-child{border-bottom:none}
+.ab-dash{color:var(--green);flex-shrink:0;font-family:var(--serif);margin-top:0.05rem}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.team-card{
+  background:var(--green-pale);border:1px solid var(--green-border);
+  padding:1.25rem;display:flex;align-items:center;gap:1rem;
+}
+.team-av{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--green-light);border:1px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:500;color:var(--green);flex-shrink:0;
+}
+.team-name{font-size:0.83rem;font-weight:500;color:var(--black)}
+.team-role{font-size:0.72rem;color:var(--gray2);margin-top:0.15rem}
+
+/* ───── PAGE 4: CONTACT ───── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 58px)}
+.contact-left{
+  background:var(--green-pale);padding:5rem 4rem;
+  border-right:1px solid var(--gray4);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.contact-left h2{
+  font-family:var(--serif);font-size:clamp(2rem,3vw,3rem);
+  font-weight:400;color:var(--black);line-height:1.2;margin-bottom:1rem;
+}
+.contact-left h2 em{font-style:italic;color:var(--green)}
+.contact-left p{font-size:0.88rem;line-height:1.8;color:var(--gray2);margin-bottom:2.5rem}
+.contact-cards{display:flex;flex-direction:column;gap:1rem}
+.contact-card{
+  background:var(--white);border:1px solid var(--gray4);
+  padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;
+  transition:border-color 0.2s;
+}
+.contact-card:hover{border-color:var(--green)}
+.contact-icon{
+  width:36px;height:36px;border:1px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.contact-icon svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.contact-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray3);margin-bottom:0.2rem}
+.contact-val{font-size:0.85rem;color:var(--black);font-weight:400}
+.contact-right{
+  background:var(--white);padding:5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.form-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--black);margin-bottom:0.5rem}
+.form-sub{font-size:0.82rem;color:var(--gray2);margin-bottom:2rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray3);margin-bottom:0.5rem;font-weight:500}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:0.75rem 1rem;
+  border:1px solid var(--gray4);background:var(--bg);
+  font-family:var(--sans);font-size:0.85rem;color:var(--black);
+  outline:none;transition:border-color 0.2s;font-weight:300;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-submit{
+  width:100%;padding:0.9rem;background:var(--green);color:var(--white);
+  font-size:0.8rem;font-weight:500;font-family:var(--sans);
+  border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;
+  letter-spacing:0.04em;
+}
+.btn-submit:hover{opacity:0.85}
+.form-note{font-size:0.72rem;color:var(--gray3);text-align:center;margin-top:0.75rem}
+
+/* FOOTER */
+.site-footer{
+  background:var(--black);padding:2rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--white);display:flex;align-items:center;gap:0.5rem}
+.footer-logo .logo-mark{border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.4)}
+.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.25)}
+.footer-icai{font-size:0.68rem;color:rgba(255,255,255,0.2);letter-spacing:0.04em}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem}
+  .nav-links li a{padding:0.5rem 0.6rem;font-size:0.75rem}
+  .home-hero{grid-template-columns:1fr}
+  .home-right{grid-template-rows:auto;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--gray4)}
+  .home-stat{border-right:1px solid var(--gray4);border-bottom:none}
+  .home-left{padding:3rem 1.5rem;border-right:none}
+  .home-strip{padding:1.25rem 1.5rem;gap:0.5rem}
+  .page-hero{padding:3rem 1.5rem 2rem}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .process-wrap{padding:3rem 1.5rem}
+  .steps{grid-template-columns:1fr 1fr;gap:2rem}
+  .steps::before{display:none}
+  .about-wrap,.contact-wrap{grid-template-columns:1fr}
+  .about-left,.about-right,.contact-left,.contact-right{padding:3rem 1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .site-footer{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">
+    <div class="logo-mark">CA</div>
+    Your Firm Name Here
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('contact')">Get in touch</button>
+</nav>
+
+<!-- ───── PAGE: HOME ───── -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="home-left">
+      <div class="eyebrow">Chartered Accountants · [Your City]</div>
+      <h1 class="hero-title">Numbers handled.<br>Future <em>secured.</em></h1>
+      <p class="hero-sub">A trusted CA firm helping individuals and businesses with tax, compliance, audit, and financial planning — with clarity and care at every step.</p>
+      <div class="btn-row">
+        <button class="btn-green" onclick="showPage('contact')">Book a free consultation</button>
+        <button class="btn-ghost" onclick="showPage('services')">See our services</button>
+      </div>
+    </div>
+    <div class="home-right">
+      <div class="home-stat">
+        <div class="stat-n">500<em>+</em></div>
+        <div class="stat-l">Clients served across India</div>
+      </div>
+      <div class="home-stat">
+        <div class="stat-n">20<em>yrs</em></div>
+        <div class="stat-l">Of trusted practice</div>
+      </div>
+      <div class="home-stat">
+        <div class="stat-n">98<em>%</em></div>
+        <div class="stat-l">Client retention rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="home-strip">
+    <div class="strip-item">Tax Filing & ITR</div>
+    <div class="strip-dot"></div>
+    <div class="strip-item">GST Compliance</div>
+    <div class="strip-dot"></div>
+    <div class="strip-item">Audit & Assurance</div>
+    <div class="strip-dot"></div>
+    <div class="strip-item">Company Registration</div>
+    <div class="strip-dot"></div>
+    <div class="strip-item">Financial Planning</div>
+    <div class="strip-dot"></div>
+    <div class="strip-item">TDS Management</div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-logo"><div class="logo-mark">CA</div>Your Firm Name Here</div>
+    <span class="footer-copy">© 2025 Your Firm Name Here. All rights reserved.</span>
+    <span class="footer-icai">ICAI Reg. No. [XXXXXX]</span>
+  </footer>
+</div>
+
+<!-- ───── PAGE: SERVICES ───── -->
+<div class="page" id="page-services">
+  <div class="page-hero">
+    <div class="eyebrow">What we offer</div>
+    <h2>Everything your <em>finances</em> need</h2>
+    <p>From your first ITR to a full corporate audit — one firm, every service, zero headache.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-num">01</div>
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <div class="svc-name">Tax Filing & ITR</div>
+      <div class="svc-desc">Accurate returns for individuals, HUFs, and companies — filed on time with every deduction accounted for.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">02</div>
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l3 3"/></svg></div>
+      <div class="svc-name">GST Compliance</div>
+      <div class="svc-desc">Registration, monthly filings, ITC reconciliation, and notice handling — end to end, stress free.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">03</div>
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg></div>
+      <div class="svc-name">Audit & Assurance</div>
+      <div class="svc-desc">Statutory, tax, and internal audits conducted thoroughly to keep you compliant and investor-ready.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">04</div>
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div class="svc-name">Company Registration</div>
+      <div class="svc-desc">Pvt Ltd, LLP, OPC, or partnership — all MCA filings handled so you're incorporated fast.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">05</div>
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="svc-name">Financial Planning</div>
+      <div class="svc-desc">Investment structuring, cash flow planning, and advisory to grow and protect your wealth.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">06</div>
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+      <div class="svc-name">TDS Management</div>
+      <div class="svc-desc">TDS computation, quarterly returns, certificate issuance, and reconciliation — completely handled.</div>
+    </div>
+  </div>
+  <div class="process-wrap">
+    <div class="process-title">Simple, <em>transparent</em> process</div>
+    <div class="steps">
+      <div class="step-item"><div class="step-dot">1</div><div class="step-name">Free consult</div><div class="step-desc">Tell us your situation — we assess and suggest the right services.</div></div>
+      <div class="step-item"><div class="step-dot">2</div><div class="step-name">Share documents</div><div class="step-desc">Via WhatsApp, email, or our secure client portal.</div></div>
+      <div class="step-item"><div class="step-dot">3</div><div class="step-name">We get to work</div><div class="step-desc">Our CA team handles everything with milestone updates.</div></div>
+      <div class="step-item"><div class="step-dot">4</div><div class="step-name">Done & filed</div><div class="step-desc">Compliant and sorted. We stay available year-round.</div></div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-logo"><div class="logo-mark">CA</div>Your Firm Name Here</div>
+    <span class="footer-copy">© 2025 Your Firm Name Here. All rights reserved.</span>
+    <span class="footer-icai">ICAI Reg. No. [XXXXXX]</span>
+  </footer>
+</div>
+
+<!-- ───── PAGE: ABOUT ───── -->
+<div class="page" id="page-about">
+  <div class="about-wrap">
+    <div class="about-left">
+      <div class="eyebrow">Who we are</div>
+      <h2>A firm built on <em>trust</em></h2>
+      <p>We are a team of qualified chartered accountants who believe good accounting is about more than compliance — it's about giving you clarity and confidence over your financial life.</p>
+      <div class="about-stats">
+        <div class="ab-stat"><div class="ab-stat-n">500+</div><div class="ab-stat-l">Happy clients</div></div>
+        <div class="ab-stat"><div class="ab-stat-n">20yrs</div><div class="ab-stat-l">In practice</div></div>
+        <div class="ab-stat"><div class="ab-stat-n">6 CAs</div><div class="ab-stat-l">On the team</div></div>
+        <div class="ab-stat"><div class="ab-stat-n">98%</div><div class="ab-stat-l">Retention rate</div></div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="eyebrow" style="color:var(--green)">Why choose us</div>
+      <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--black);margin-bottom:0.5rem">What sets us <em style="font-style:italic;color:var(--green)">apart</em></h2>
+      <div class="about-list">
+        <div class="ab-item"><span class="ab-dash">—</span>ICAI-registered CAs with deep expertise across industries</div>
+        <div class="ab-item"><span class="ab-dash">—</span>Dedicated point of contact — no getting passed around</div>
+        <div class="ab-item"><span class="ab-dash">—</span>Proactive tax planning, not just reactive filing</div>
+        <div class="ab-item"><span class="ab-dash">—</span>Fixed fees quoted upfront — no hidden charges</div>
+        <div class="ab-item"><span class="ab-dash">—</span>Secure digital portal for easy document sharing</div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-av">RS</div><div><div class="team-name">[Your Name], CA</div><div class="team-role">Founder & Senior Partner</div></div></div>
+        <div class="team-card"><div class="team-av">PK</div><div><div class="team-name">[Partner Name], CA</div><div class="team-role">Tax & Audit Lead</div></div></div>
+        <div class="team-card"><div class="team-av">AM</div><div><div class="team-name">[Partner Name], CA</div><div class="team-role">GST Specialist</div></div></div>
+        <div class="team-card"><div class="team-av">NJ</div><div><div class="team-name">[Partner Name], CA</div><div class="team-role">Wealth Advisory</div></div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-logo"><div class="logo-mark">CA</div>Your Firm Name Here</div>
+    <span class="footer-copy">© 2025 Your Firm Name Here. All rights reserved.</span>
+    <span class="footer-icai">ICAI Reg. No. [XXXXXX]</span>
+  </footer>
+</div>
+
+<!-- ───── PAGE: CONTACT ───── -->
+<div class="page" id="page-contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <div class="eyebrow">Get in touch</div>
+      <h2>Let's sort your <em>finances</em> — starting today.</h2>
+      <p>Free 30-minute consultation, no obligation. Fill the form or reach us directly through any of the channels below.</p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg></div>
+          <div><div class="contact-label">Phone</div><div class="contact-val">+91 00000 00000</div></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="contact-label">Email</div><div class="contact-val">hello@yourfirm.in</div></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="contact-label">Office</div><div class="contact-val">[Your Address, City]</div></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+          <div><div class="contact-label">Hours</div><div class="contact-val">Mon – Sat, 9am – 7pm</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="form-title">Send us a message</div>
+      <div class="form-sub">We'll get back to you within 24 hours.</div>
+      <div class="form-row">
+        <div class="form-group"><label>Full name</label><input type="text" placeholder="Your name"/></div>
+        <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 00000 00000"/></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"/></div>
+      <div class="form-group">
+        <label>Service needed</label>
+        <select>
+          <option value="">Select a service</option>
+          <option>Tax Filing & ITR</option>
+          <option>GST Compliance</option>
+          <option>Audit & Assurance</option>
+          <option>Company Registration</option>
+          <option>Financial Planning</option>
+          <option>TDS Management</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us a bit about your requirements…"></textarea></div>
+      <button class="btn-submit" onclick="this.textContent='Message sent! We\'ll be in touch soon.'">Send message</button>
+      <div class="form-note">Free consultation · No spam · 100% confidential</div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-logo"><div class="logo-mark">CA</div>Your Firm Name Here</div>
+    <span class="footer-copy">© 2025 Your Firm Name Here. All rights reserved.</span>
+    <span class="footer-icai">ICAI Reg. No. [XXXXXX]</span>
+  </footer>
+</div>
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  window.scrollTo(0,0);
+  return false;
+}
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',function(e){e.preventDefault()});
+});
+</script>
+</body>
+</html>
